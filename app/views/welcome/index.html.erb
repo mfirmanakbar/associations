@@ -19,6 +19,23 @@
 </table>
 
 <br><b>has_one</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Ticket Label</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @clients.each do |c| %>
+        <tr>
+            <td><%= c.name %></td>
+            <td><%= c.ticket.ticket_label %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
 <br><b>has_many</b>
 <br><b>has_many :through</b>
 <br><b>has_one :through</b>

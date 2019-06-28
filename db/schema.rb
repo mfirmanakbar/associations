@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_080617) do
+ActiveRecord::Schema.define(version: 2019_06_28_114804) do
+
+  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "developers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -26,5 +32,14 @@ ActiveRecord::Schema.define(version: 2019_06_28_080617) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "ticket_label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_tickets_on_client_id"
+  end
+
   add_foreign_key "developers", "teams"
+  add_foreign_key "tickets", "clients"
 end
