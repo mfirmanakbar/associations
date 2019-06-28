@@ -1,7 +1,27 @@
 <h4>Welcome Page</h4>
 
-<% @developers.each do |d| %>
-    <ul>
-        <li><%= d.name %> from <%= d.team.team_name %> Team</li>
-    </ul>
-<% end %>
+<br><b>belongs_to</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @developers.each do |d| %>
+        <tr>
+            <td><%= d.name %></td>
+            <td><%= d.team.team_name %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<br><b>has_one</b>
+<br><b>has_many</b>
+<br><b>has_many :through</b>
+<br><b>has_one :through</b>
+<br><b>has_has_and_belongs_to_manyone</b>
+
+
