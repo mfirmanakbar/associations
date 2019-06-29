@@ -1,19 +1,6 @@
-## 1. Belongs_To
-
-* table developers
-
-  | Column Name    |
-  | -------------- |
-  | id             |
-  | name           |
-  | team_id        |
-
-* table teams
-
-  | Column Name      |
-  | ---------------- |
-  | id               |
-  | team_name        |
+## 1. Belongs_To (one-to-one | left side to right side)
+  
+  ![img](https://i.ibb.co/0j3sdm4/d1.png)
   
 * Models developer.rb
   ```ruby
@@ -47,23 +34,9 @@
   ```
 
 
-## 2. Has_one
+## 2. Has_one (one-to-one | right side to left side)
 
-* table clients
-
-  | Column Name    |
-  | -------------- |
-  | id             |
-  | name           |
-  | team_id        |
-
-* table tickets
-
-  | Column Name    |
-  | -------------- |
-  | id             |
-  | ticket_label   |
-  | client_id      |
+![img](https://i.ibb.co/5x5njTB/d2.png)
 
 * Models client.rb
   ```ruby
