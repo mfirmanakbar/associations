@@ -76,9 +76,9 @@
   end
   ```
   
-  * If foo belongs_to :bar, then the foos table has a bar_id column
+  * If foo `belongs_to :bar`, then the foos table has a bar_id column
   ![img](https://i.ibb.co/RS84Ky1/foo-belongs-to-bar.png)
   
   
-  * If foo has_one :bar, then the bars table has a foo_id column
+  * If foo `has_one :bar`, then the bars table has a foo_id column
   ![img](https://i.ibb.co/kSpBq3S/foo-has-one-bar.png)
