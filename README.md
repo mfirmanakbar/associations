@@ -1,4 +1,4 @@
-## 1. Belongs_To (one-to-one | left side to right side)
+## 1. Belongs_To (1-to-1)
   
   ![img](https://i.ibb.co/0j3sdm4/d1.png)
   
@@ -34,7 +34,7 @@
   ```
 
 
-## 2. Has_One (one-to-one | right side to left side)
+## 2. Has_One (1-to-1)
 
 ![img](https://i.ibb.co/5x5njTB/d2.png)
 
@@ -69,4 +69,12 @@
     <% end %>
     ```
   
+## 3. What's different between belongs_to and has_one?
   
+  ```ruby
+  class Foo < ApplicationRecord
+  end
+  ```
+  
+  If foo belongs_to :bar, then the foos table has a bar_id column
+  If foo has_one :bar, then the bars table has a foo_id column
