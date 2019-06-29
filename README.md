@@ -34,7 +34,7 @@
   ```
 
 
-## 2. Has_one (one-to-one | right side to left side)
+## 2. Has_One (one-to-one | right side to left side)
 
 ![img](https://i.ibb.co/5x5njTB/d2.png)
 
