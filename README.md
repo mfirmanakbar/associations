@@ -1,24 +1,50 @@
-# README
+## 1. Belongs_To
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* table developers
 
-Things you may want to cover:
+  | Column Name    |
+  | -------------- |
+  | id             |
+  | name           |
+  | team_id        |
 
-* Ruby version
+* table teams
 
-* System dependencies
+  | Column Name      |
+  | ---------------- |
+  | id               |
+  | team_name        |
+  
+* Models developer.rb
+  ```ruby
+  class Developer < ApplicationRecord
+      belongs_to :team
+  end
+  ```
 
-* Configuration
+* Models team.rb
+  ```ruby
+  class Team < ApplicationRecord
+  end
+  ```
 
-* Database creation
+* Controller
+  ```ruby
+  class WelcomeController < ApplicationController
+      def index
+          @developers = Developer.all
+      end
+  end
+  ```
 
-* Database initialization
+* How it works? (html.erb)
+  ```ruby
+  <% @developers.each do |d| %>
+      <ul>
+          <li>Developer Name: <%= d.name %> and team name: <%= d.team.team_name %> </li>
+      </ul>
+  <% end %>
+  ```
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 2. Has_one
