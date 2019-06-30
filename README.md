@@ -82,3 +82,8 @@
   
   * If foo `has_one :bar`, then the bars table has a foo_id column
   ![img](https://i.ibb.co/kSpBq3S/foo-has-one-bar.png)
+
+## 4. has_one through
+  
+  ![img](https://i.ibb.co/z56TZkq/has-one-through.png)
+  
