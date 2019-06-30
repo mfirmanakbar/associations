@@ -18,7 +18,7 @@
     </tbody>
 </table>
 
-<br><b>has_one</b>
+<hr><b>has_one</b>
 <table border="1">
     <thead>
         <tr>
@@ -36,11 +36,73 @@
     </tbody>
 </table>
 
-<br><b>has_one :through</b>
+<hr><b>has_one :through</b>
+<table border="1">
+    <thead>
+        <tr><th colspan="3">Supplier Model</th></tr>
+        <tr>
+            <th>Name</th>
+            <th>Code Number</th>
+            <th>Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @suppliers.each do |s| %>
+        <tr>
+            <td> <%= s.name %> </td>
+            <td> <%= s.account.code_number %> </td>
+            <td> <%= s.account.account_history.activity %> </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<br>
+
+<table border="1">
+    <thead>
+        <tr><th colspan="3">Account Model</th></tr>
+        <tr>
+            <th>Name</th>
+            <th>Code Number</th>
+            <th>Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @accounts.each do |a| %>
+        <tr>
+            <td> <%= a.supplier.name %> </td>
+            <td> <%= a.code_number %> </td>
+            <td> <%= a.account_history.activity %> </td>            
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<br>
+
+<table border="1">
+    <thead>
+        <tr><th colspan="3">Account History Model</th></tr>
+        <tr>
+            <th>Name</th>
+            <th>Code Number</th>
+            <th>Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @account_histories.each do |ah| %>
+        <tr>
+            <td> <%= ah.account.supplier.name %> </td>
+            <td> <%= ah.account.code_number %> </td>
+            <td> <%= ah.activity %> </td>            
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<br>
+
 
 <br><b>has_many</b>
 <br><b>has_many :through</b>
-<%# <br><b>has_one :through</b> %>
 <br><b>has_has_and_belongs_to_manyone</b>
 
 
