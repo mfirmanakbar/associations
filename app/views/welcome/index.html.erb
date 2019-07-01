@@ -133,11 +133,68 @@
     </div>
 </div>
 
-<br>
+<hr>
+
+<div class="card">
+    <div class="card-header"> has_many </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="2">Author Model</th></tr>
+                        <tr class="text-center">
+                            <th>Author</th>
+                            <th>Books List</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @authors.each do |a| %>
+                        <tr>
+                            <td><%= a.name %></td>
+                            <td>
+                                <ul>
+                                <% a.books.each do |b| %>
+                                    <li><%= b.book_title %></li> 
+                                <% end %>
+                                </ul>                                
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="2">Book Model</th></tr>
+                        <tr class="text-center">
+                            <th>Author</th>
+                            <th>Books Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @books.each do |b| %>
+                        <tr>
+                            <td><%= b.author.name %></td>
+                            <td><%= b.book_title %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-offset-4">
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
 <br>
 <br>
 
-<br><b>has_many</b>
+
 <br><b>has_many :through</b>
 <br><b>has_has_and_belongs_to_manyone</b>
 

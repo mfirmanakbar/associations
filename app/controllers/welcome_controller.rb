@@ -8,6 +8,9 @@ class WelcomeController < ApplicationController
         @suppliers = Supplier.all
         @accounts = Account.all
         @account_histories = AccountHistory.all
+
+        @authors = Author.all
+        @books = Book.all
     end
 
 end
