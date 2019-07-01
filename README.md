@@ -82,3 +82,115 @@
   
   * If foo `has_one :bar`, then the bars table has a foo_id column
   ![img](https://i.ibb.co/kSpBq3S/foo-has-one-bar.png)
+
+## 4. has_one through
+  
+  ![img](https://i.ibb.co/z56TZkq/has-one-through.png)
+  
+  * Models supplier.rb
+    ```ruby
+    class Supplier < ApplicationRecord
+      has_one :account
+      has_one :account_history, through: :account
+      end
+    ```
+    
+  * Models account.rb
+    ```ruby
+    class Account < ApplicationRecord
+        belongs_to :supplier
+        has_one :account_history
+    end
+    ```
+    
+  * Models account_history.rb
+    ```ruby
+    class AccountHistory < ApplicationRecord
+        belongs_to :account
+    end
+    ```
+    
+  * Controller
+    ```ruby
+    class WelcomeController < ApplicationController
+        def index
+            @suppliers = Supplier.all
+            @accounts = Account.all
+            @account_histories = AccountHistory.all
+        end
+    end
+    ```
+    
+  * How it works? (html.erb)
+    - From `@suppliers = Supplier.all`
+    ```ruby
+    <table border="1">
+        <thead>
+            <tr><th colspan="3">Supplier Model</th></tr>
+            <tr>
+                <th>Name</th>
+                <th>Code Number</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @suppliers.each do |s| %>
+            <tr>
+                <td> <%= s.name %> </td>
+                <td> <%= s.account.code_number %> </td>
+                <td> <%= s.account.account_history.activity %> </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    ```
+    
+    - From `@accounts = Account.all`
+    ```ruby
+    <table border="1">
+        <thead>
+            <tr><th colspan="3">Account Model</th></tr>
+            <tr>
+                <th>Name</th>
+                <th>Code Number</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @accounts.each do |a| %>
+            <tr>
+                <td> <%= a.supplier.name %> </td>
+                <td> <%= a.code_number %> </td>
+                <td> <%= a.account_history.activity %> </td>            
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    ```
+    
+    - From `@account_histories = AccountHistory.all`
+    ```ruby
+    <table border="1">
+        <thead>
+            <tr><th colspan="3">Account History Model</th></tr>
+            <tr>
+                <th>Name</th>
+                <th>Code Number</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @account_histories.each do |ah| %>
+            <tr>
+                <td> <%= ah.account.supplier.name %> </td>
+                <td> <%= ah.account.code_number %> </td>
+                <td> <%= ah.activity %> </td>            
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    ```
+    
+  
+  
+
