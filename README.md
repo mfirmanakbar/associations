@@ -1,4 +1,4 @@
-## 1. Belongs_To (1-to-1)
+## 1. Belongs_To (1-to-1 / FK in Current Model)
   
   ![img](https://i.ibb.co/0j3sdm4/d1.png)
   
@@ -34,7 +34,7 @@
   ```
 
 
-## 2. Has_One (1-to-1)
+## 2. Has_One (1-to-1 / FK in Other Model)
 
 ![img](https://i.ibb.co/5x5njTB/d2.png)
 
@@ -83,7 +83,7 @@
   * If foo `has_one :bar`, then the bars table has a foo_id column
   ![img](https://i.ibb.co/kSpBq3S/foo-has-one-bar.png)
 
-## 4. has_one through
+## 4. Has_One :Through (1-to-1-n)
   
   ![img](https://i.ibb.co/z56TZkq/has-one-through.png)
   
@@ -191,6 +191,87 @@
     </table>
     ```
     
+## 5. Has_Many (1-to-M / FK in Other Model)
   
+  ![img](https://i.ibb.co/RSNQ76X/image.png)
+  
+  * Models author.rb
+    ```ruby
+    class Author < ApplicationRecord
+        has_many :books
+    end
+    ```
+    
+  * Models book.rb
+    ```ruby
+    class Book < ApplicationRecord
+        belongs_to :author
+    end
+    ```
+  
+  * Controller
+    ```ruby
+    class WelcomeController < ApplicationController
+        def index
+            @authors = Author.all
+            @books = Book.all
+        end
+    end
+    ```
+  
+  * How it works? (html.erb)
+  
+    - From `@authors = Author.all`
+    ```ruby
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr class="text-center"><th colspan="2">Author Model</th></tr>
+            <tr class="text-center">
+                <th>Author</th>
+                <th>Books List</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @authors.each do |a| %>
+            <tr>
+                <td><%= a.name %></td>
+                <td>
+                    <ul>
+                    <% a.books.each do |b| %>
+                        <li><%= b.book_title %></li> 
+                    <% end %>
+                    </ul>                                
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>    
+    ```
+    
+    - From `@books = Book.all`
+    ```ruby
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr class="text-center"><th colspan="2">Book Model</th></tr>
+            <tr class="text-center">
+                <th>Author</th>
+                <th>Books Title</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @books.each do |b| %>
+            <tr>
+                <td><%= b.author.name %></td>
+                <td><%= b.book_title %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    ```
+    
+
+## 6. Has_Many :Through
+## 7. Has_Has_And_Belongs_To_Manyone 
+
   
 
