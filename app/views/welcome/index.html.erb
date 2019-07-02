@@ -7,7 +7,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center">
                             <th>Name</th>
@@ -37,7 +37,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center">
                             <th>Name</th>
@@ -67,7 +67,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center"><th colspan="3">Supplier Model</th></tr>
                         <tr class="text-center">
@@ -88,7 +88,7 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center"><th colspan="3">Account Model</th></tr>
                         <tr class="text-center">
@@ -109,7 +109,7 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center"><th colspan="3">Account History Model</th></tr>
                         <tr class="text-center">
@@ -140,7 +140,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center"><th colspan="2">Author Model</th></tr>
                         <tr class="text-center">
@@ -165,7 +165,7 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm">
                     <thead class="thead-dark">
                         <tr class="text-center"><th colspan="2">Book Model</th></tr>
                         <tr class="text-center">
@@ -191,14 +191,104 @@
 
 <hr>
 
-<br>
-<br>
+<div class="card">
+    <div class="card-header"> has_many :through </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="3">Appointment Model</th></tr>
+                        <tr class="text-center">
+                            <th>Appointment Date</th>
+                            <th>Physicians</th>
+                            <th>Patients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @appointments.each do |a| %>
+                        <tr>
+                            <td><%= a.appointment_date %></td>
+                            <td><%= a.physician.name %></td>
+                            <td><%= a.patient.name %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="3">Physician Model</th></tr>
+                        <tr class="text-center">
+                            <th>Appointment Date</th>
+                            <th>Physicians</th>
+                            <th>Patients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @physicians.each do |c| %>
+                        <tr>
+                            <td>
+                                <ul>
+                                <% c.appointments.each do |a| %>
+                                    <li><%= a.appointment_date %></li>
+                                <% end %>
+                                </ul>
+                            </td>
+                            <td><%= c.name %></td>
+                            <td>
+                                <ul>
+                                <% c.patients.each do |p| %>
+                                    <li><%= p.name %></li>
+                                <% end %>
+                                </ul>
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="3">Patient Model</th></tr>
+                        <tr class="text-center">
+                            <th>Appointment Date</th>
+                            <th>Physicians</th>
+                            <th>Patients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @patients.each do |p| %>
+                        <tr>
+                            <td>
+                                <ul>
+                                <% p.appointments.each do |a| %>
+                                    <li><%= a.appointment_date %></li>
+                                <% end %>
+                                </ul>
+                            </td>
+                            <td><%= p.name %></td>
+                            <td>
+                                <ul>
+                                <% p.physicians.each do |c| %>
+                                    <li><%= c.name %></li>
+                                <% end %>
+                                </ul>
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
+<hr>
 
-<br><b>has_many :through</b>
 <br><b>has_has_and_belongs_to_manyone</b>
 
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
 

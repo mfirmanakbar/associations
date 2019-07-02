@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_01_063146) do
+ActiveRecord::Schema.define(version: 2019_07_01_090944) do
 
   create_table "account_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "activity"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2019_07_01_063146) do
     t.datetime "updated_at", null: false
     t.bigint "supplier_id"
     t.index ["supplier_id"], name: "index_accounts_on_supplier_id"
+  end
+
+  create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "physician_id"
+    t.bigint "patient_id"
+    t.date "appointment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["physician_id"], name: "index_appointments_on_physician_id"
   end
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,6 +64,18 @@ ActiveRecord::Schema.define(version: 2019_07_01_063146) do
     t.datetime "updated_at", null: false
     t.bigint "team_id"
     t.index ["team_id"], name: "index_developers_on_team_id"
+  end
+
+  create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "physicians", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

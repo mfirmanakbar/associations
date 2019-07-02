@@ -11,6 +11,10 @@ class WelcomeController < ApplicationController
 
         @authors = Author.all
         @books = Book.all
+
+        @appointments = Appointment.all
+        @physicians = Physician.all
+        @patients = Patient.all
     end
 
 end
