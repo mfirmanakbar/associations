@@ -288,7 +288,71 @@
 
 <hr>
 
-<br><b>has_has_and_belongs_to_manyone</b>
+<div class="card">
+    <div class="card-header"> has_has_and_belongs_to_manyone </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="3">StudentsForum Model</th></tr>
+                        <tr class="text-center">
+                            <th>Student</th>
+                            <th>Forum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @studentsforums.each do |sf| %>
+                        <tr>
+                            <td><%= sf.student_id %> - <%= sf.student.name %> </td>
+                            <td><%= sf.forum_id %> - <%= sf.forum.name %> </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="3">Student Model</th></tr>
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @students.each do |s| %>
+                        <tr>
+                            <td><%= s.id %></td>
+                            <td><%= s.name %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                        <tr class="text-center"><th colspan="3">Forum Model</th></tr>
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @forums.each do |f| %>
+                        <tr>
+                            <td><%= f.id %> </td>
+                            <td><%= f.name %> </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
+<br><br><br><br><br><br>
 <br><br><br><br><br><br>
 

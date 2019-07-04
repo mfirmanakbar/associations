@@ -15,6 +15,10 @@ class WelcomeController < ApplicationController
         @appointments = Appointment.all
         @physicians = Physician.all
         @patients = Patient.all
+
+        @studentsforums = StudentsForum.all
+        @students = Student.all
+        @forums = Forum.all
     end
 
 end
