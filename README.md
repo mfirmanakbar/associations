@@ -405,6 +405,105 @@
 
 
 ## 7. Has_Has_And_Belongs_To_Manyone 
+  
+  ![img](https://i.ibb.co/3z69KJP/image.png)
+  
+  * Models Student.rb
+    ```ruby
+    class Student < ApplicationRecord
+        has_and_belongs_to_many :forums
+    end
+    ```
+    
+  * Models forum.rb
+    ```ruby
+    class Forum < ApplicationRecord
+        has_and_belongs_to_many :students
+    end
+    ```
+    
+  * Models StudentsForum.rb
+    ```ruby
+    class StudentsForum < ApplicationRecord
+        belongs_to :student
+        belongs_to :forum
+    end
+    ```
+    
+  * Controller
+    ```ruby
+    class WelcomeController < ApplicationController
+        def index
+          @studentsforums = StudentsForum.all
+          @students = Student.all
+          @forums = Forum.all
+        end
+    end
+    ```
+    
+  * How it works? (html.erb)    
+    - From @students = Student.all
+      ```ruby
+      <table class="table table-bordered table-sm">
+          <thead class="thead-dark">
+              <tr class="text-center"><th colspan="3">Student Model</th></tr>
+              <tr class="text-center">
+                  <th>Id</th>
+                  <th>Name</th>
+              </tr>
+          </thead>
+          <tbody>
+          <% @students.each do |s| %>
+              <tr>
+                  <td><%= s.id %></td>
+                  <td><%= s.name %></td>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
+      ```
+    - From @forums = Forum.all
+      ```ruby
+      <table class="table table-bordered table-sm">
+          <thead class="thead-dark">
+              <tr class="text-center"><th colspan="3">Forum Model</th></tr>
+              <tr class="text-center">
+                  <th>Id</th>
+                  <th>Name</th>
+              </tr>
+          </thead>
+          <tbody>
+          <% @forums.each do |f| %>
+              <tr>
+                  <td><%= f.id %> </td>
+                  <td><%= f.name %> </td>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
+      ```
+    - From @studentsforums = StudentsForum.all
+      ```ruby
+      <table class="table table-bordered table-sm">
+          <thead class="thead-dark">
+              <tr class="text-center"><th colspan="3">StudentsForum Model</th></tr>
+              <tr class="text-center">
+                  <th>Student</th>
+                  <th>Forum</th>
+              </tr>
+          </thead>
+          <tbody>
+          <% @studentsforums.each do |sf| %>
+              <tr>
+                  <td><%= sf.student_id %> - <%= sf.student.name %> </td>
+                  <td><%= sf.forum_id %> - <%= sf.forum.name %> </td>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
+      ```
+      
+###
 
   
 
